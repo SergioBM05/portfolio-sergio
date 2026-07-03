@@ -1,4 +1,5 @@
 import React from 'react';
+import fotoMealScane from '../assets/proyectoMealScan.png'
 
 export default function Proyectos() {
     const listaProyectos = [
@@ -7,6 +8,7 @@ export default function Proyectos() {
             subtitulo: "Escáner de calorías inteligente y planificador deportivo integral.",
             github: "https://github.com/SergioBM05/contadorCalorias",
             web: "https://contador-calorias-one.vercel.app/",
+            imagen: fotoMealScane, 
             enDesarrollo: true,
             problema: "Esta app web nace de mi necesidad por querer poder calcular lo que como sin tener que pagarle a una app cuando yo mismo puedo desarollarlo ",
             solucion: "Automatizar el proceso a través del reconocimiento visual. Al tomar una fotografía del plato, una IA identifica los ingredientes y calcula instantáneamente los macronutrientes, enlazando el progreso con mis rutinas de entrenamiento.",
@@ -17,11 +19,10 @@ export default function Proyectos() {
                 { fase: "Fase 4", nombre: "Métricas Avanzadas", desc: "Gráficos interactivos de rendimiento.", estado: "pendiente" }
             ]
         }
-
     ];
 
     return (
-        <section id="proyecto" className="scroll-mt-24 space-y-12">
+        <section id="proyectos" className="scroll-mt-24 space-y-12">
             <div className="space-y-2">
                 <h2 className="text-3xl font-bold tracking-tight text-white">Proyectos</h2>
                 <p className="text-slate-400 max-w-2xl">
@@ -53,14 +54,13 @@ export default function Proyectos() {
                                     <span>GitHub</span>
                                 </a>
 
-                                {/* NUEVO: Botón con icono de Cadena / Enlace Externo */}
+                                {/* Botón Enlace Externo */}
                                 <a
-                                    href={proy.web} // Asegúrate de añadir esta propiedad en tu objeto de proyectos si la usas
+                                    href={proy.web}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="inline-flex items-center gap-2 px-4 py-2 text-xs font-medium bg-slate-900 hover:bg-slate-950 border border-slate-700 text-slate-300 rounded-lg transition-colors"
                                 >
-                                    {/* Icono de Cadena (Link) */}
                                     <svg
                                         className="w-4 h-4 stroke-current fill-none"
                                         viewBox="0 0 24 24"
@@ -87,19 +87,33 @@ export default function Proyectos() {
                             </div>
                         </div>
 
-                        {/* Reto y Solución */}
-                        <div className="grid md:grid-cols-2 gap-8">
-                            <div className="space-y-3">
-                                <h4 className="text-sm font-semibold uppercase tracking-wider text-brandGreen">El Problema</h4>
-                                <p className="text-slate-300 text-sm leading-relaxed">{proy.problema}</p>
-                            </div>
-                            <div className="space-y-3">
-                                <h4 className="text-sm font-semibold uppercase tracking-wider text-brandBlue">La Solución</h4>
-                                <p className="text-slate-300 text-sm leading-relaxed">{proy.solucion}</p>
+                        {/* Distribución corregida: Imagen sin recortes + Textos */}
+                        <div className="grid md:grid-cols-5 gap-8 items-start">
+                            {/* Bloque de la Imagen (Se eliminó bg-slate-900 y object-cover por object-contain) */}
+                            {proy.imagen && (
+                                <div className="md:col-span-2 w-full rounded-xl overflow-hidden border border-slate-800/60">
+                                    <img 
+                                        src={proy.imagen} 
+                                        alt={`Captura de pantalla de ${proy.titulo}`} 
+                                        className="w-full h-auto object-contain opacity-95 hover:opacity-100 transition-opacity duration-300"
+                                    />
+                                </div>
+                            )}
+
+                            {/* Bloque del Contenido */}
+                            <div className={`space-y-6 ${proy.imagen ? 'md:col-span-3' : 'md:col-span-5'}`}>
+                                <div className="space-y-3">
+                                    <h4 className="text-sm font-semibold uppercase tracking-wider text-brandGreen">El Problema</h4>
+                                    <p className="text-slate-300 text-sm leading-relaxed">{proy.problema}</p>
+                                </div>
+                                <div className="space-y-3">
+                                    <h4 className="text-sm font-semibold uppercase tracking-wider text-brandBlue">La Solución</h4>
+                                    <p className="text-slate-300 text-sm leading-relaxed">{proy.solucion}</p>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Renderizado Condicional del Roadmap (Solo si está en desarrollo) */}
+                        {/* Renderizado Condicional del Roadmap */}
                         {proy.enDesarrollo && proy.roadmap && proy.roadmap.length > 0 && (
                             <div className="space-y-4 pt-4">
                                 <h4 className="text-sm font-semibold text-slate-400 uppercase tracking-wider">Estado del Desarrollo (Roadmap)</h4>

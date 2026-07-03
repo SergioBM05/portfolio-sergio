@@ -42,7 +42,7 @@ export default function Contact() {
 
           {/* Botón Descargar CV */}
           <a 
-            href="/tu-cv.pdf" 
+            href="/cv.pdf" 
             download="CV_Sergio.pdf"
             className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-brandGreen/90 hover:bg-brandGreen text-slate-950 font-bold text-sm rounded-lg transition-colors shadow-lg shadow-brandGreen/10"
           >
