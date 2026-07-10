@@ -15,8 +15,8 @@ export default function Proyectos() {
             roadmap: [
                 { fase: "Fase 1", nombre: "Base & Auth", desc: "Modelado de bases de datos y perfiles.", estado: "hecho" },
                 { fase: "Fase 2", nombre: "Escáner de Fotos", desc: "Integración de la API de visión y cálculo calórico.", estado: "hecho" },
-                { fase: "Fase 3", nombre: "Módulo FitPlan", desc: "Planificación de entrenamientos y cargas.", estado: "actual" },
-                { fase: "Fase 4", nombre: "Métricas Avanzadas", desc: "Gráficos interactivos de rendimiento.", estado: "pendiente" }
+                { fase: "Fase 3", nombre: "Módulo FitPlan", desc: "Planificación de entrenamientos y cargas.", estado: "hecho" },
+                { fase: "Fase 4", nombre: "Métricas Avanzadas", desc: "Gráficos interactivos de rendimiento.", estado: "hecho" }
             ]
         }
     ];
