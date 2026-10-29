@@ -2,8 +2,103 @@
 
 @theme {
   --font-sans: Inter, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Superficies */
   --color-darkBg: #020617;
+  --color-darkCard: #0b1120;
+
+  /* Marca */
   --color-brandGreen: #34d399;
+  --color-brandBlue: #38bdf8;
+  --color-brandPurple: #a78bfa;
+
+  /* Animaciones */
+  --animate-fade-up: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-blob: blob 20s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-caret: caret 1s steps(2) infinite;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(26px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes blob {
+    0%,
+    100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(40px, -50px) scale(1.12);
+    }
+    66% {
+      transform: translate(-30px, 30px) scale(0.92);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes caret {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/* Texto con el degradado de marca */
+@utility text-gradient {
+  background-image: linear-gradient(
+    110deg,
+    var(--color-brandGreen),
+    var(--color-brandBlue) 45%,
+    var(--color-brandPurple)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Rejilla técnica de fondo */
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(51 65 85 / 0.28) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(51 65 85 / 0.28) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Difumina un fondo decorativo hacia los bordes */
+@utility mask-fade {
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 35%, transparent 100%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 35%, transparent 100%);
 }
 
 @layer base {
@@ -12,7 +107,7 @@
   }
 
   body {
-    @apply m-0 min-h-screen bg-slate-950 text-slate-100 antialiased;
+    @apply m-0 min-h-screen bg-darkBg text-slate-100 antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
@@ -25,5 +120,37 @@
 
   * {
     @apply border-slate-800;
+  }
+
+  /* Barra de desplazamiento a juego con el tema */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #020617;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 9999px;
+    border: 2px solid #020617;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brandGreen;
+  }
+}
+
+/* Respeto por quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

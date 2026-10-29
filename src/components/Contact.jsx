@@ -1,68 +1,145 @@
 import React from 'react';
+import Reveal from './Reveal';
+import SectionHeading from './SectionHeading';
+
+const CANALES = [
+  {
+    nombre: 'Email',
+    detalle: 'sergio.burbano.mj@gmail.com',
+    href: 'mailto:sergio.burbano.mj@gmail.com',
+    acento: 'text-brandGreen',
+    fondo: 'from-brandGreen/20 to-transparent',
+    icono: (
+      <>
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="m22 7-10 6L2 7" />
+      </>
+    ),
+  },
+  {
+    nombre: 'GitHub',
+    detalle: '@SergioBM05',
+    href: 'https://github.com/SergioBM05',
+    externo: true,
+    acento: 'text-brandBlue',
+    fondo: 'from-brandBlue/20 to-transparent',
+    icono: (
+      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
+    ),
+  },
+  {
+    nombre: 'Currículum',
+    detalle: 'Descargar en PDF',
+    href: '/cv.pdf',
+    descarga: 'CV_Sergio_Burbano.pdf',
+    acento: 'text-brandPurple',
+    fondo: 'from-brandPurple/20 to-transparent',
+    icono: (
+      <>
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+        <polyline points="7 10 12 15 17 10" />
+        <line x1="12" y1="15" x2="12" y2="3" />
+      </>
+    ),
+  },
+];
 
 export default function Contact() {
   return (
-    <section id="contacto" className="scroll-mt-24 space-y-6">
-      <div className="space-y-1">
-        <h2 className="text-3xl font-bold tracking-tight text-white">Contacto</h2>
-        <p className="text-slate-400">¿Quieres contar conmigo para tu equipo? Aquí tienes mis accesos directos.</p>
-      </div>
-      
-      <div className="bg-gradient-to-br from-darkCard to-slate-900 border border-slate-800 rounded-2xl p-6 md:p-8 text-center space-y-6">
-        <p className="text-slate-300 max-w-md mx-auto text-sm">
-          Disponible para incorporación inmediata, proyectos freelance o resolución de dudas sobre mi código.
-        </p>
-        
-        {/* Contenedor de Botones de Contacto */}
-        <div className="flex flex-wrap justify-center items-center gap-4">
-          
-          {/* Botón Gmail */}
-          <a 
-            href="mailto:sergio.burbano.mj@gmail.com" 
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-slate-900 hover:bg-slate-950 border border-slate-700 text-slate-300 hover:text-white font-medium text-sm rounded-lg transition-colors shadow-md"
-          >
-            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-            </svg>
-            <span>Gmail</span>
-          </a>
+    <section id="contacto" className="scroll-mt-24 space-y-12">
+      <Reveal>
+        <SectionHeading
+          numero="04"
+          etiqueta="Contacto"
+          titulo="¿Hablamos?"
+          descripcion="Disponible para incorporación inmediata, proyectos freelance o resolver dudas sobre mi código. Respondo rápido."
+        />
+      </Reveal>
 
-          {/* Botón GitHub */}
-          <a 
-            href="https://github.com/SergioBM05" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-slate-900 hover:bg-slate-950 border border-slate-700 text-slate-300 hover:text-white font-medium text-sm rounded-lg transition-colors shadow-md"
-          >
-            <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-              <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
-            </svg>
-            <span>GitHub</span>
-          </a>
+      <Reveal delay={80}>
+        <div className="relative overflow-hidden rounded-3xl border border-slate-800 bg-gradient-to-br from-darkCard to-slate-900/80 p-8 md:p-12">
+          {/* Decoración de fondo */}
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            <div className="grid-bg absolute inset-0 opacity-20" />
+            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brandGreen/10 blur-[90px]" />
+            <div className="absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-brandPurple/10 blur-[90px]" />
+          </div>
 
-          {/* Botón Descargar CV */}
-          <a 
-            href="/cv.pdf" 
-            download="CV_Sergio.pdf"
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 bg-brandGreen/90 hover:bg-brandGreen text-slate-950 font-bold text-sm rounded-lg transition-colors shadow-lg shadow-brandGreen/10"
-          >
-            <svg 
-              className="w-4 h-4 stroke-current fill-none" 
-              viewBox="0 0 24 24" 
-              strokeWidth="2.5" 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              aria-hidden="true"
-            >
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v4" />
-              <polyline points="7 10 12 15 17 10" />
-              <line x1="12" y1="15" x2="12" y2="3" />
-            </svg>
-            <span>Descargar CV</span>
-          </a>
+          <div className="relative space-y-10">
+            <div className="space-y-3 text-center">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brandGreen/30 bg-brandGreen/10 px-4 py-1.5 text-xs font-medium text-brandGreen">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brandGreen" />
+                Abierto a nuevas oportunidades
+              </span>
+              <h3 className="text-2xl font-bold text-white sm:text-3xl">
+                Cuéntame qué quieres construir
+              </h3>
+              <p className="mx-auto max-w-md text-sm leading-relaxed text-slate-400">
+                Elige el canal que prefieras y te contesto lo antes posible.
+              </p>
+            </div>
 
+            {/* Canales de contacto */}
+            <div className="grid gap-4 sm:grid-cols-3">
+              {CANALES.map((canal) => (
+                <a
+                  key={canal.nombre}
+                  href={canal.href}
+                  {...(canal.externo ? { target: '_blank', rel: 'noreferrer' } : {})}
+                  {...(canal.descarga ? { download: canal.descarga } : {})}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/60 p-5 text-center transition-all duration-300 hover:-translate-y-1 hover:border-slate-700"
+                >
+                  <div
+                    aria-hidden="true"
+                    className={`pointer-events-none absolute inset-0 bg-gradient-to-b ${canal.fondo} opacity-0 transition-opacity duration-300 group-hover:opacity-100`}
+                  />
+
+                  <div className="relative space-y-2">
+                    <span
+                      className={`mx-auto flex h-11 w-11 items-center justify-center rounded-xl border border-slate-800 bg-slate-900 ${canal.acento}`}
+                    >
+                      <svg
+                        className="h-5 w-5 fill-none stroke-current"
+                        viewBox="0 0 24 24"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        {canal.icono}
+                      </svg>
+                    </span>
+
+                    <p className="font-semibold text-white">{canal.nombre}</p>
+                    <p className="truncate text-xs text-slate-500">{canal.detalle}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Acción principal */}
+            <div className="text-center">
+              <a
+                href="mailto:sergio.burbano.mj@gmail.com"
+                className="group inline-flex items-center gap-2 rounded-xl bg-brandGreen px-7 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-brandGreen/20 transition hover:-translate-y-0.5 hover:bg-brandGreen/90 hover:shadow-xl hover:shadow-brandGreen/30"
+              >
+                Escríbeme un correo
+                <svg
+                  className="h-4 w-4 fill-none stroke-current transition-transform group-hover:translate-x-1"
+                  viewBox="0 0 24 24"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </a>
+            </div>
+          </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }
