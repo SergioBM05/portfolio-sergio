@@ -4,9 +4,9 @@ import SectionHeading from './SectionHeading';
 
 const ESTADISTICAS = [
   { valor: 'DAM', etiqueta: 'Técnico Superior' },
-  { valor: '9+', etiqueta: 'Tecnologías' },
-  { valor: '1', etiqueta: 'App en producción' },
-  { valor: '2024', etiqueta: 'Prácticas en empresa' },
+  { valor: 'IA', etiqueta: 'Máster en curso' },
+  { valor: '2', etiqueta: 'Apps en producción' },
+  { valor: '2025', etiqueta: 'Prácticas en empresa' },
 ];
 
 const ENFOQUE = [
@@ -51,12 +51,24 @@ const EXPERIENCIA = [
   {
     puesto: 'Desarrollador Web (Prácticas FCT - DAM)',
     empresa: 'Rafibra',
-    periodo: 'Abr 2024 — Jun 2024',
+    periodo: 'Abr 2025 — Jun 2025',
     descripcion: [
       'Mantenimiento correctivo y evolutivo de la aplicación web corporativa de la empresa.',
       'Diseño e implementación de nuevas funciones operativas y ventanas (vistas) interactivas.',
       'Optimización de la interfaz de usuario para mejorar los flujos de trabajo internos.',
     ],
+  },
+];
+
+const FORMACION = [
+  {
+    titulo: 'Máster en Aprendizaje Automático: Gestión de Datos y Entrenamiento de IA',
+    periodo: 'En curso',
+    actual: true,
+  },
+  {
+    titulo: 'Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)',
+    periodo: 'Finalizado',
   },
 ];
 
@@ -68,7 +80,7 @@ export default function AboutMe() {
           numero="01"
           etiqueta="Sobre Mí"
           titulo="Programo para quitarle trabajo repetitivo a la gente"
-          descripcion="Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM). Me apasiona programar por la satisfacción de ayudar automatizando el trabajo de otros y, de paso, aprender algo nuevo en cada proyecto."
+          descripcion="Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM) y ahora cursando el Máster en Aprendizaje Automático: Gestión de Datos y Entrenamiento de IA. Me apasiona programar por la satisfacción de ayudar automatizando el trabajo de otros y, de paso, aprender algo nuevo en cada proyecto."
         />
       </Reveal>
 
@@ -164,6 +176,40 @@ export default function AboutMe() {
                     ))}
                   </ul>
                 </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+
+      {/* Formación */}
+      <div className="space-y-8 pt-4">
+        <Reveal>
+          <div className="flex items-center gap-3">
+            <h3 className="text-2xl font-bold tracking-tight text-white">Formación</h3>
+            <span className="h-px flex-1 bg-gradient-to-r from-slate-700 to-transparent" />
+          </div>
+        </Reveal>
+
+        <div className="grid gap-5 md:grid-cols-2">
+          {FORMACION.map((estudio, index) => (
+            <Reveal key={estudio.titulo} delay={index * 120}>
+              <div
+                className={`flex h-full flex-col justify-between gap-4 rounded-2xl border bg-darkCard/60 p-6 transition-colors hover:border-slate-700 ${
+                  estudio.actual ? 'border-brandBlue/30' : 'border-slate-800'
+                }`}
+              >
+                <h4 className="text-base font-bold leading-snug text-white">{estudio.titulo}</h4>
+                <span
+                  className={`inline-flex items-center gap-1.5 self-start rounded-full border px-3 py-1 font-mono text-xs ${
+                    estudio.actual
+                      ? 'border-brandBlue/30 bg-brandBlue/10 text-brandBlue'
+                      : 'border-slate-800 bg-slate-900 text-slate-400'
+                  }`}
+                >
+                  {estudio.actual && <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-brandBlue" />}
+                  {estudio.periodo}
+                </span>
               </div>
             </Reveal>
           ))}

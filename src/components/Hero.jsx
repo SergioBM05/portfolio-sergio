@@ -4,6 +4,7 @@ import { cintaTecnologias } from '../data/tecnologias';
 const ROLES = [
   'Desarrollador Full Stack',
   'Técnico Superior en DAM',
+  'Estudiante de Máster en IA',
   'React · Java · Laravel',
 ];
 
@@ -162,7 +163,7 @@ function TarjetaCodigo() {
         style={{ animationDelay: '1.5s' }}
       >
         <p className="text-[10px] uppercase tracking-wider text-slate-500">Formación</p>
-        <p className="text-sm font-semibold text-brandBlue">Grado Superior DAM</p>
+        <p className="text-sm font-semibold text-brandBlue">Máster en IA · en curso</p>
       </div>
     </div>
   );
