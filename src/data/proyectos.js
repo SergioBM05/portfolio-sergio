@@ -37,6 +37,7 @@ export const listaProyectos = [
         categoria: 'Finanzas · Full stack',
         subtitulo: 'Plataforma para gestionar préstamos, cuotas y cobros con panel de administrador y acceso para clientes.',
         github: 'https://github.com/SergioBM05/app-prestamos',
+        web: 'https://app-prestamos-indol.vercel.app/',
         preview: 'prestamos',
         estado: 'completado',
         stack: ['React', 'Vite', 'Tailwind CSS', 'Node.js', 'Express', 'Firebase', 'Vercel'],
