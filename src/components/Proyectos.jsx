@@ -178,7 +178,19 @@ function VistaPrevia({ proy }) {
 
     return (
         <MarcoNavegador url={url}>
-            {proy.imagen ? (
+            {proy.video ? (
+                <video
+                    src={proy.video}
+                    poster={proy.poster}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label={`Vídeo de demostración de ${proy.titulo}`}
+                    className="w-full bg-slate-950"
+                />
+            ) : proy.imagen ? (
                 <img
                     src={proy.imagen}
                     alt={`Captura de pantalla de ${proy.titulo}`}
@@ -192,38 +204,11 @@ function VistaPrevia({ proy }) {
     );
 }
 
-/** Barra que resume cuántas fases del roadmap están completadas. */
-function ProgresoRoadmap({ roadmap }) {
-    const hechas = roadmap.filter((f) => f.estado === 'hecho').length;
-    const porcentaje = Math.round((hechas / roadmap.length) * 100);
-
-    return (
-        <div className="space-y-2">
-            <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold uppercase tracking-wider text-slate-400">
-                    Estado del desarrollo
-                </span>
-                <span className="font-mono text-brandGreen">
-                    {hechas}/{roadmap.length} fases · {porcentaje}%
-                </span>
-            </div>
-            <div className="h-1.5 overflow-hidden rounded-full bg-slate-800">
-                <div
-                    className="h-full rounded-full bg-gradient-to-r from-brandGreen to-brandBlue transition-[width] duration-700"
-                    style={{ width: `${porcentaje}%` }}
-                />
-            </div>
-        </div>
-    );
-}
-
 function Roadmap({ roadmap }) {
     const base = 'relative overflow-hidden rounded-xl border p-4 transition-all duration-300 hover:-translate-y-1';
 
     return (
         <div className="space-y-5 border-t border-slate-800 pt-6">
-            <ProgresoRoadmap roadmap={roadmap} />
-
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 {roadmap.map((fase) => {
                     if (fase.estado === 'hecho') {
@@ -435,7 +420,7 @@ export default function Proyectos() {
 
             {/* Índice rápido de la vitrina */}
             <Reveal delay={80}>
-                <nav aria-label="Índice de proyectos" className="grid gap-3 sm:grid-cols-3">
+                <nav aria-label="Índice de proyectos" className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                     {listaProyectos.map((proy, index) => (
                         <a
                             key={proy.id}
