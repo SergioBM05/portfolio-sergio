@@ -104,13 +104,19 @@ function PreviewPrestamos() {
     );
 }
 
-/** Vista previa ilustrada del CRM (proyecto privado). */
-function PreviewCrm() {
-    const columnas = [
-        { nombre: 'Contactado', color: 'bg-brandBlue', leads: ['Clínica Norte', 'Autoescuela Sol'] },
-        { nombre: 'Interés real', color: 'bg-brandPurple', leads: ['Bar La Plaza', 'Veterinaria Can'], parado: 1 },
-        { nombre: 'Diagnóstico', color: 'bg-amber-300', leads: ['Inmobiliaria Mar'] },
-        { nombre: 'Ganado', color: 'bg-brandGreen', leads: ['Logística Sur'] },
+/** Vista previa ilustrada de la guía de trabajo de Rielden (proyecto privado). */
+function PreviewGuia() {
+    const contadores = [
+        { n: '8', texto: 'Hoy', color: 'text-brandGreen' },
+        { n: '3', texto: 'Atrasados', color: 'text-rose-400' },
+        { n: '5', texto: 'Tareas', color: 'text-brandBlue' },
+    ];
+    const etapas = [
+        { texto: 'Preparar la visita', hecho: true },
+        { texto: 'Primer contacto', hecho: true },
+        { texto: 'Diagnóstico', actual: true },
+        { texto: 'Propuesta' },
+        { texto: 'Seguimiento' },
     ];
 
     return (
@@ -124,39 +130,32 @@ function PreviewCrm() {
             </div>
 
             <div className="min-w-0 flex-1 space-y-3 p-3">
-                <div className="flex items-center justify-between">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Pipeline de ventas</p>
-                    <span className="rounded border border-slate-700 px-1.5 py-0.5 font-mono text-[9px] text-slate-500">Ctrl K</span>
-                </div>
+                <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">Trabajo diario · Airtable</p>
 
-                <div className="grid grid-cols-4 gap-1.5">
-                    {columnas.map((col) => (
-                        <div key={col.nombre} className="space-y-1.5 rounded-md bg-slate-900/60 p-1.5">
-                            <div className="flex items-center gap-1">
-                                <span className={`h-1.5 w-1.5 rounded-full ${col.color}`} />
-                                <p className="truncate text-[8px] font-semibold text-slate-400">{col.nombre}</p>
-                            </div>
-                            {col.leads.map((lead, i) => (
-                                <div
-                                    key={lead}
-                                    className={`rounded border bg-slate-950/80 p-1.5 ${col.parado === i ? 'border-rose-500/60' : 'border-slate-800'}`}
-                                >
-                                    <p className="truncate text-[8px] font-medium text-slate-200">{lead}</p>
-                                    <p className={`mt-0.5 text-[7px] ${col.parado === i ? 'text-rose-400' : 'text-slate-500'}`}>
-                                        {col.parado === i ? '⏳ 6 d sin contacto' : 'Próx.: llamada'}
-                                    </p>
-                                </div>
-                            ))}
+                <div className="grid grid-cols-3 gap-1.5">
+                    {contadores.map((c) => (
+                        <div key={c.texto} className="rounded-md border border-slate-800 bg-slate-900/60 p-2">
+                            <p className={`text-sm font-bold ${c.color}`}>{c.n}</p>
+                            <p className="text-[8px] text-slate-500">{c.texto}</p>
                         </div>
                     ))}
                 </div>
 
-                <div className="rounded-md border border-brandPurple/30 bg-brandPurple/5 p-2">
-                    <p className="text-[8px] font-semibold uppercase tracking-wider text-brandPurple">✦ Redactor IA</p>
-                    <div className="mt-1.5 space-y-1">
-                        <span className="block h-1 w-11/12 rounded-full bg-slate-700" />
-                        <span className="block h-1 w-4/5 rounded-full bg-slate-700" />
-                        <span className="block h-1 w-2/3 rounded-full bg-slate-700" />
+                <div className="rounded-md border border-slate-800 bg-slate-900/60 p-2">
+                    <p className="text-[8px] font-semibold uppercase tracking-wider text-slate-400">Guía · Diagnóstico</p>
+                    <div className="mt-1.5 space-y-1.5">
+                        {etapas.map((e) => (
+                            <div key={e.texto} className="flex items-center gap-1.5">
+                                <span
+                                    className={`h-2 w-2 shrink-0 rounded-full border ${
+                                        e.hecho ? 'border-brandGreen bg-brandGreen' : e.actual ? 'border-brandBlue bg-brandBlue/40' : 'border-slate-600'
+                                    }`}
+                                />
+                                <p className={`truncate text-[8px] ${e.actual ? 'font-semibold text-slate-100' : e.hecho ? 'text-slate-400' : 'text-slate-500'}`}>
+                                    {e.texto}
+                                </p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
@@ -166,7 +165,7 @@ function PreviewCrm() {
 
 const PREVIEWS = {
     prestamos: PreviewPrestamos,
-    crm: PreviewCrm,
+    guia: PreviewGuia,
 };
 
 /** Captura real si existe; si no, la vista previa ilustrada del proyecto. */
